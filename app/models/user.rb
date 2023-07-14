@@ -1,6 +1,3 @@
-# frozen_string_literal: true
-
-# Represents a user of the blog application.
 class User < ApplicationRecord
   has_many :comments
   has_many :posts

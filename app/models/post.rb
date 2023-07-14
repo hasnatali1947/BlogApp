@@ -1,6 +1,3 @@
-# frozen_string_literal: true
-
-# Represents a blog post written by an author.
 class Post < ApplicationRecord
   belongs_to :author, class_name: 'User'
   has_many :comments
