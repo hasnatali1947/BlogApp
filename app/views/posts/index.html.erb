@@ -1,1 +1,25 @@
-<h1> show a post</h1>
+<div class = "container">
+<div class = "img">
+<img src="<%= @user.photo %>">
+</div>
+<div class="main">
+<h2> 
+<%= @user.name %>
+</h2>
+<p>Number of Posts: <%= @user.posts_counter %> </p>
+</div>
+</div>
+<ul class="posts">
+<% @user.posts.each do |post| %>
+    <li>
+    <b><%= post.title %></b>
+    <p class= 'text'> <a href="/users/<%= @user.id %>/posts/<%= post.id %>"><%= post.text %></a> </p>
+    <div class="post_bottom"> <p>comments: <%= post.comments_counter %> </p> <p>likes: <%= post.likes_counter %> </p> </div>
+    <ul class="comments">
+        <% post.recent_comments.each do |comment| %>
+            <li> <%= comment.user.name %>: <%= comment.text %> </li>
+        <% end %>
+    </ul>
+    </li>
+<% end %>
+</ul>
