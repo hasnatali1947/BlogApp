@@ -1,1 +1,20 @@
-<h1> show post details</h1>
+<div>
+<div>
+<div class="post">
+<div class='one'>
+<b>Posted by: <%= @user.name %> </b>
+<p> <%= @post.text %> </p>
+</div>
+<div class="second">
+<p>comments: <%= @post.comments_counter %></p>
+<p> likes: <%= @post.likes_counter %></p>
+</div>
+</div>
+</div>
+<ul class="comments">
+<% @comments.each do |comment| %>
+    <li> <%= comment.user.name %>: <%= comment.text %> </li>
+    <% end %>
+</ul>
+
+</div>

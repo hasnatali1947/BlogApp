@@ -1,0 +1,121 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  padding: 20px 20px;
+}
+
+.main-container {
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  gap: 10px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.img {
+  flex: 1;
+  border: 1px solid rgb(200, 194, 194);
+}
+
+.img img {
+  width: 100%;
+  height: 100%;
+}
+
+.main {
+  flex: 3;
+  border: 1px solid rgb(200, 194, 194);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 10px 20px;
+}
+
+.main p {
+  text-align: right;
+  align-self: flex-end;
+  padding-top: 10px;
+}
+
+.main h2 {
+  align-self: center;
+}
+
+.text a {
+  text-decoration: none;
+}
+
+.seemore a {
+  text-decoration: none;
+  font-size: 22px;
+}
+
+.main h2 a {
+  text-decoration: none;
+  color: rgb(6, 6, 11);
+}
+
+.bio {
+  padding: 10px 10px;
+  border: 1px solid rgb(200, 194, 194);
+  margin-top: 5px;
+}
+
+.posts {
+  border: 1px solid rgb(200, 194, 194);
+  margin: 10px 0;
+  display: flex;
+  list-style: none;
+  flex-direction: column;
+}
+
+.text {
+  text-align: center;
+}
+
+.post_bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  padding: 0 10px;
+  gap: 10px;
+}
+
+.comments {
+  list-style: none;
+  border: 1px solid rgb(200, 194, 194);
+  padding: 10px 20px;
+}
+
+.post {
+  padding: 10px 20px;
+  display: flex;
+  border: 1px solid rgb(200, 194, 194);
+  justify-content: space-between;
+}
+
+.one {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.second {
+  display: flex;
+  gap: 10px;
+}
+
+.seemore {
+  display: flex;
+  justify-content: center;
+}
