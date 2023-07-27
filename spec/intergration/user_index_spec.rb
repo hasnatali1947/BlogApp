@@ -20,7 +20,6 @@ RSpec.describe User, type: :feature do
       expect(page).to have_content('Number of Posts: 3', wait: 10)
     end
 
-
     it "When I click on a user, I am redirected to that user's show page." do
       user2 = User.create(name: 'Lilly', post_counter: 2, photo: 'https://randomuser.me/api/portraits/women/70.jpg',
                           bio: 'Teacher from Poland.')
