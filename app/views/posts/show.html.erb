@@ -1,24 +1,27 @@
+<!-- show.html.erb -->
 <div>
-<div>
-<div class="post">
-<div class='one'>
-<b>Posted by: <%= @user.name %> </b>
-<p> <%= @post.text %> </p>
-</div>
-<div class="second">
-<p>comments: <%= @post.comments_counter %></p>
+  <div>
+    <div class="post">
+      <div class='one'>
+        <b>Posted by: <%= @user.name %> </b> <br>
+        <h3><%= @post.title %></h3> <br>
+      </div>
+      <div class="second">
+        <p>comments: <%= @post.comments_counter %></p>
+        <p>likes: <%= @post.likes_counter %></p>
+        <%= button_to "Like", user_post_likes_path(@user, @post), method: :post %>
+      </div>
+    </div>
+  </div>
 
-<p> likes: <%= @post.likes_counter %></p>
+  <!-- Add the placeholder here -->
+  <div class="post_comment">
+    <!-- Placeholder content goes here -->
+  </div>
 
-<%= button_to "Like", user_post_likes_path(@user, @post), method: :post %>
-
-</div>
-</div>
-</div>
-<ul class="comments">
-<% @comments.each do |comment| %>
-    <li> <%= comment.user.name %>: <%= comment.text %> </li>
+  <ul class="comments">
+    <% @post.comments.includes(:user).each do |comment| %>
+      <li> <%= comment.user.name %>: <%= comment.text %> </li>
     <% end %>
-</ul>
-
+  </ul>
 </div>

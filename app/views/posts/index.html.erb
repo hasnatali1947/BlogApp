@@ -1,25 +1,37 @@
-<div class = "container">
-<div class = "img">
-<img src="<%= @user.photo %>">
+<!-- index.html.erb -->
+<!-- index.html.erb -->
+<div class="container">
+  <div class="img">
+    <img src="<%= @user.photo %>">
+  </div>
+  <div class="main">
+    <h2><%= @user.name %></h2>
+    <!-- Update the variable name here -->
+    <p>Number of Posts: <%= @user.posts_counter %></p>
+  </div>
 </div>
-<div class="main">
-<h2> 
-<%= @user.name %>
-</h2>
-<p>Number of Posts: <%= @user.posts_counter %> </p>
-</div>
-</div>
+
+<!-- Add the placeholder here -->
+<ul class="photo">
+  <!-- Placeholder content goes here -->
+</ul>
+
 <ul class="posts">
-<% @user.posts.each do |post| %>
+  <% @posts.includes(:author, :comments).each do |post| %>
     <li>
-    <b><%= post.title %></b>
-    <p class= 'text'> <a href="/users/<%= @user.id %>/posts/<%= post.id %>"><%= post.text %></a> </p>
-    <div class="post_bottom"> <p>comments: <%= post.comments_counter %> </p> <p>likes: <%= post.likes_counter %> </p> </div>
-    <ul class="comments">
-        <% post.recent_comments.each do |comment| %>
-            <li> <%= comment.user.name %>: <%= comment.text %> </li>
+      <b><%= post.title %></b>
+      <p class='text'>
+        <a href="/users/<%= @user.id %>/posts/<%= post.id %>"><%= post.text %></a>
+      </p>
+      <div class="post_bottom">
+        <p>comments: <%= post.comments_counter %></p>
+        <p>likes: <%= post.likes_counter %></p>
+      </div>
+      <ul class="comments">
+        <% post.recent_comments.includes(:user).each do |comment| %>
+          <li> <%= comment.user.name %>: <%= comment.text %> </li>
         <% end %>
-    </ul>
+      </ul>
     </li>
-<% end %>
+  <% end %>
 </ul>

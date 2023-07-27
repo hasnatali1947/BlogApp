@@ -1,15 +1,21 @@
 require 'rails_helper'
 
-RSpec.describe Like, type: :model do
-  user = User.new(name: 'Hasnat', photo: 'profile_picture', bio: 'User 1', posts_counter: 0)
-  post = Post.new(author_id: user, title: 'Eat me', text: 'You can fry and eat')
+describe Like, type: :model do
+  let(:user) { User.create(name: 'Jake', photo: 'user.png', bio: 'Jake is a 21-year-old footballer from Ghana') }
+  let(:post) { Post.create(author: user, title: 'My first post', text: 'Ghana is in West Africa') }
 
-  subject { Like.new(author_id: user, post_id: post) }
-  before { subject.save }
+  describe 'Associations' do
+    it 'belongs to an author' do
+      association = described_class.reflect_on_association(:author)
+      expect(association.macro).to eq(:belongs_to)
+      expect(association.class_name).to eq('User')
+    end
 
-  it 'should belong to an author' do
-    like = Like.reflect_on_association(:user)
-    expect(like.macro).to eq(:belongs_to)
+    it 'belongs to a post' do
+      association = described_class.reflect_on_association(:post)
+      expect(association.macro).to eq(:belongs_to)
+      expect(association.class_name).to eq('Post')
+    end
   end
 
   it 'should belong to a post' do
