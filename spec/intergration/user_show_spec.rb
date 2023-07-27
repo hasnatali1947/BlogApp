@@ -13,7 +13,7 @@ RSpec.describe User, type: :feature do
       visit user_path(subject.id)
       expect(page).to have_content(subject.name)
     end
-    it 'I can see the number of posts the user has written.' do
+    it "I can see the number of posts the user has written." do
       visit user_path(subject.id)
       expect(page).to have_content(subject.post_counter)
     end
@@ -21,12 +21,31 @@ RSpec.describe User, type: :feature do
       visit user_path(subject.id)
       expect(page).to have_content(subject.bio)
     end
-
+    # it "I can see the user's first 3 posts." do
+    #   Post.create([{ author: subject, title: 'First Post', text: 'My first post' },
+    #                { author: subject, title: 'Second Post', text: 'My Second post' },
+    #                { author: subject, title: 'Third Post', text: 'My Third post' }])
+    #   visit user_path(subject.id)
+    #   expect(page).to have_content('first post')
+    #   expect(page).to have_content('second post')
+    #   expect(page).to have_content('third post')
+    # end
     it "I can see a button that lets me view all of a user's posts." do
-      visit user_path(subject.id)
-      expect(page).to have_link('See all Post', href: user_posts_path(subject))
-    end
-
+        visit user_path(subject.id)
+        expect(page).to have_link('See all Post', href: user_posts_path(subject))
+      end
+      
+      it "When I click a user's post, it redirects me to that post's show page." do
+        post = Post.create(author: subject, title: 'First Post', text: 'First post')
+        visit user_path(subject.id)
+        click_on 'First Post'
+        visit user_post_path(subject.id, post.id)
+        expect(page).to have_content('First Post')
+      end
+      
+      
+      
+      
     it "When I click to see all posts, it redirects me to the user's post's index page." do
       Post.create(author: subject, title: 'First Post', text: 'First post')
       visit user_path(subject.id)
