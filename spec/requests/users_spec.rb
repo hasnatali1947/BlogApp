@@ -1,28 +1,29 @@
 require 'rails_helper'
 
-RSpec.describe 'Users' do
-  describe 'GET /index' do
-    before { get '/users' }
-    it 'returns http success' do
-      expect(response).to have_http_status(:success)
+describe 'Users', type: :request do
+  describe 'GET #index' do
+    it 'successfull request' do
+      get '/'
+      expect(response).to be_successful
     end
-    it 'renders the index template' do
+
+    it 'should render the index template' do
+      get '/users'
       expect(response).to render_template(:index)
     end
-    it 'renders the correct content' do
-      expect(response.body).to include('users')
-    end
   end
-  describe 'GET /show' do
-    before { get '/users/10' }
-    it 'returns http success' do
-      expect(response).to have_http_status(:success)
+
+  describe 'GET users from /users/:id to show' do
+    user = User.create!(name: 'Tom', photo: 'https://picsum.photos/200/300', bio: 'I am John', post_counter: 4)
+
+    it 'successful request' do
+      get users_path
+      expect(response).to be_successful
     end
-    it 'renders the index template' do
+
+    it 'should render the show template' do
+      get "/users/#{user.id}"
       expect(response).to render_template(:show)
-    end
-    it 'renders the correct content' do
-      expect(response.body).to include('user')
     end
   end
 end

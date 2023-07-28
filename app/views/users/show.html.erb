@@ -1,27 +1,29 @@
-<div class = "container">
-<div class = "img">
-<img src="<%= @user.photo %>">
+<div class="container">
+  <div class="img">
+    <img src="<%= @user.photo %>">
+  </div>
+  <div class="main">
+    <h2><%= @user.name %></h2>
+    <p class="post_counter">Number of Posts: <%= @user.post_counter %></p>
+  </div>
 </div>
-<div class="main">
-<h2> 
-<%= @user.name %>
-</h2>
-<p>Number of Posts: <%= @user.posts_counter %> </p>
-</div>
-</div>
-<div class = "bio">
-<b>Bio: </b>
-<p> <%= @user.bio %> </p>
+<div class="bio">
+  <b>Bio: </b>
+  <p> <%= @user.bio %> </p>
 </div>
 <ul class="posts">
-<% @filterposts.each do |post| %>
+  <% @filterposts.each do |post| %>
     <li>
-    <b><%= post.title %></b>
-    <p class= 'text'> <%= post.text %> </p>
-    <div class="post_bottom"> <p>comments: <%= post.comments_counter %> </p> <p>likes: <%= post.likes_counter %> </p> </div>
+      <b><%= post.title %></b>
+      <p class='text'> <%= post.text %> </p>
+      <div class="post_bottom">
+        <p>comments: <%= post.comments_counter %></p>
+        <p>likes: <%= post.likes_counter %></p>
+      </div>
     </li>
-<% end %>
+  <% end %>
 </ul>
 
-<div class="seemore"> <a href="/users/<%= @user.id %>/posts">See more</a> </div>
-
+<div class="seemore">
+  <%= link_to 'See all Post', user_posts_path(@user) %>
+</div>

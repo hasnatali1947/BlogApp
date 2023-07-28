@@ -1,17 +1,19 @@
+<!-- app/views/users/index.html.erb -->
 <h1>All Users</h1>
 <ul class="main-container">
-        <% @user.each do |user| %>
+  <% @user.each do |user| %>
     <li> 
-        <div class = "container">
-            <div class = "img">
-                <img src="<%= user.photo %>">
-            </div>
-            <div class="main">
-                <h2> 
-                    <a href="/users/<%= user.id %>"><%= user.name %></a>
-                </h2>
-            </div>
+      <div class="container">
+        <div class="img">
+          <img src="<%= user.photo %>">
         </div>
+        <div class="main">
+          <h2> 
+            <a href="/users/<%= user.id %>"><%= user.name %></a>
+          </h2>
+          <p>Number of Posts: <%= user.post_counter %></p>
+        </div>
+      </div>
     </li>
-    <% end %>
+  <% end %>
 </ul>

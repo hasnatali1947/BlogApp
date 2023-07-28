@@ -1,28 +1,37 @@
 require 'rails_helper'
 
-RSpec.describe 'Users' do
-  describe 'GET /index' do
-    before { get '/users/10/posts' }
-    it 'returns http success' do
-      expect(response.status).to eq(200)
-    end
-    it 'renders the index template' do
-      expect(response).to render_template(:index)
-    end
-    it 'renders the correct content' do
-      expect(response.body).to include('post')
-    end
+describe 'Posts', type: :request do
+  before(:each) do
+    user = User.create!(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.',
+                        post_counter: 1)
+    get "/users/#{user.id}/posts"
   end
-  describe 'GET /show' do
-    before { get '/users/10/posts/1' }
-    it 'returns http success' do
-      expect(response).to have_http_status(:success)
+
+  it 'successfull request' do
+    expect(response).to be_successful
+  end
+
+  it 'should render the index template' do
+    expect(response).to render_template(:index)
+  end
+
+  describe 'GET users from /users/:id to show' do
+    user = User.create!(name: 'Burak', photo: 'https://picsum.photos/200/300', bio: 'I am Burak', post_counter: 4)
+    post = Post.create!(author: user, title: 'title', text: ' Post text 1', comments_counter: 0, likes_counter: 0)
+
+    it 'successful request' do
+      get "/users/#{user.id}/posts/#{post.id}"
+      expect(response).to be_successful
     end
-    it 'renders the index template' do
+
+    it 'should render the show template' do
+      get "/users/#{user.id}/posts/#{post.id}"
       expect(response).to render_template(:show)
     end
-    it 'renders the correct content' do
-      expect(response.body).to include('post')
+
+    it 'should render the show placeholder' do
+      get "/users/#{user.id}/posts/#{post.id}"
+      expect(response.body).to include('<div class="post_comment">')
     end
   end
 end
