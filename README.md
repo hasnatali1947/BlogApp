@@ -99,7 +99,7 @@ rails test
 👤 **Ntwali Roland**
 
 - GitHub: [Roland Ntwali](https://github.com/roland-ntwali/)
-- LinkedIn: [Roland Ntwaki](https://www.linkedin.com/in/roland-ntwali/)
+- LinkedIn: [Roland Ntwali](https://www.linkedin.com/in/roland-ntwali/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
