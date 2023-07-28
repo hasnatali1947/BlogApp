@@ -1,5 +1,14 @@
 <!-- app/views/users/index.html.erb -->
 <h1>All Users</h1>
+<div class="sign">
+<% if user_signed_in? %>
+    <p>User Signed in</p>
+<% else %>
+<a href="<%= new_user_registration_path %>">Sign up </a>
+<a href="<%= new_user_session_path %>"> Sign In </a>
+    <% end %>
+</div>
+</div>
 <ul class="main-container">
   <% @user.each do |user| %>
     <li> 
@@ -11,7 +20,7 @@
           <h2> 
             <a href="/users/<%= user.id %>"><%= user.name %></a>
           </h2>
-          <p>Number of Posts: <%= user.post_counter %></p>
+          <p>Number of Posts: <%= user.posts_counter %></p>
         </div>
       </div>
     </li>
