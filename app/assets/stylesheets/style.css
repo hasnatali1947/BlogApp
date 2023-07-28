@@ -154,3 +154,23 @@ button {
   color: bisque;
   border-radius: 30%;
 }
+
+.top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.sign {
+  display: flex;
+  gap: 20px;
+}
+
+.forms {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 15vh;
+}

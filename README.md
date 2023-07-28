@@ -9,19 +9,23 @@
 
 # 📗 Table of Contents
 
-- [📖 About the Project](#about-project)
-  - [🛠 Built With](#built-with)
-    - [Key Features](#key-features)
-- [💻 Getting Started](#getting-started)
+- [📗 Table of Contents](#-table-of-contents)
+- [📖 BlogApp](#-blogapp)
+  - [🛠 Built With ](#-built-with-)
+    - [Key Features ](#key-features-)
+  - [🚀 Presentation Video](#-presentation-video)
+  - [💻 Getting Started](#-getting-started)
+    - [Prerequisites](#prerequisites)
   - [Setup](#setup)
-  - [Prerequisites](#prerequisites)
-  - [Install](#install)
-- [👥 Authors](#authors)
-- [🔭 Future Features](#future-features)
-- [🤝 Contributing](#contributing)
-- [⭐️ Show your support](#support)
-- [🙏 Acknowledgements](#acknowledgements)
-- [📝 License](#license)
+    - [Install](#install)
+    - [Get into development](#get-into-development)
+    - [Run test](#run-test)
+  - [👥 Authors ](#-authors-)
+  - [🔭 Future Features ](#-future-features-)
+  - [🤝 Contributing ](#-contributing-)
+  - [⭐️ Show your support ](#️-show-your-support-)
+  - [🙏 Acknowledgments ](#-acknowledgments-)
+  - [📝 License ](#-license-)
 
 # 📖 BlogApp
 
@@ -92,6 +96,10 @@ rails test
 - GitHub: [Hasnat Ali](https://github.com/hasnatali1947)
 - LinkedIn: [ikenna_richard](https://www.linkedin.com/in/hasnattali/)
 
+👤 **Ntwali Roland**
+
+- GitHub: [Roland Ntwali](https://github.com/roland-ntwali/)
+- LinkedIn: [Roland Ntwali](https://www.linkedin.com/in/roland-ntwali/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -119,6 +127,7 @@ Give a ⭐️ if you like this project!
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
 - [Microverse](https://www.microverse.org/)
+
 - Coding Partners
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
