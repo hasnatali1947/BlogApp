@@ -1,27 +1,38 @@
-<!-- show.html.erb -->
 <div>
   <div>
     <div class="post">
       <div class='one'>
-        <b>Posted by: <%= @user.name %> </b> <br>
-        <h3><%= @post.title %></h3> <br>
+        <b>Posted by: <%= @user.name %> </b><br>
+        <h3><%= @post.title %></h3><br>
       </div>
+      <p><%= @post.text %></p>
       <div class="second">
         <p>comments: <%= @post.comments_counter %></p>
         <p>likes: <%= @post.likes_counter %></p>
         <%= button_to "Like", user_post_likes_path(@user, @post), method: :post %>
+        <% if can? :destroy, @post %>
+        <%= form_with(model: @post, url: user_post_path(@user, @post), method: :delete, data: { confirm: "Please confirm?" }) do |form| %>
+            <%= form.hidden_field :delete, value: "#{@post.id}"%>
+            <%= form.submit "Delete Post" %>
+            <% end %>
+        <% else %>
+        <% end %>
       </div>
     </div>
   </div>
-
-  <!-- Add the placeholder here -->
-  <div class="post_comment">
-    <!-- Placeholder content goes here -->
-  </div>
-
   <ul class="comments">
-    <% @post.comments.includes(:user).each do |comment| %>
-      <li> <%= comment.user.name %>: <%= comment.text %> </li>
+    <% @comments.includes(:user).each do |comment| %>
+      <li>
+        <p><%= comment.user.name %>: <%= comment.text %></p>
+        <% if can? :destroy, comment %>
+        <%= form_with(model: @comment, url: user_post_comment_path(@user, @post, comment), method: :delete, data: { confirm: "Please confirm?" }) do |form| %>
+            <%= form.hidden_field :delete, value: "#{comment.id}"%>
+            <%= form.submit "Delete" %>
+            <% end %>
+        <% else %>
+        <% end %>
+      </li>
     <% end %>
+    <a href="/users/<%= @user.id %>/posts/<%= @post.id %>/comments/new">Add Comment</a>
   </ul>
 </div>
