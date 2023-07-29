@@ -1,7 +1,10 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, except: %i[index show]
+  load_and_authorize_resource
+
   def index
+    @posts = Post.where(author_id: params[:user_id]).includes(:comments)
     @user = User.find(params[:user_id])
-    @posts = @user.posts
     @comments = Comment.where(post_id: @posts.pluck(:id)).includes(:user)
   end
 
@@ -26,9 +29,21 @@ class PostsController < ApplicationController
     end
   end
 
+  def destroy
+    @post = Post.find_by_id(params[:id])
+    @post.likes.destroy_all
+    @post.comments.destroy_all
+    @post.destroy
+
+    respond_to do |format|
+      format.html { redirect_to "/users/#{params[:user_id]}/posts", notice: 'Post has been destroyed!' }
+      format.json { head :no_content }
+    end
+  end
+
   private
 
   def post_params
-    params.require(:post).permit(:author_id, :title, :text, :comments_counter, :likes_counter)
+    params.require(:post).permit(:title, :text)
   end
 end
