@@ -29,10 +29,8 @@ class PostsController < ApplicationController
   end
 
   @post = Post.find_by_id(params[:id])
-
   @post.likes.destroy_all
   @post.comments.destroy_all
-
   @post.destroy
 
   respond_to do |format|
