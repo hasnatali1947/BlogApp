@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
+  load_and_authorize_resource
 
   def index
     @posts = Post.where(author_id: params[:user_id]).includes(:comments)

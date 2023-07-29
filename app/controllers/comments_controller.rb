@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
+  load_and_authorize_resource
   belongs_to :user
   belongs_to :post
 
