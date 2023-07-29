@@ -28,19 +28,21 @@ class PostsController < ApplicationController
     end
   end
 
-  @post = Post.find_by_id(params[:id])
-  @post.likes.destroy_all
-  @post.comments.destroy_all
-  @post.destroy
+  def destroy
+    @post = Post.find_by_id(params[:id])
+    @post.likes.destroy_all
+    @post.comments.destroy_all
+    @post.destroy
 
-  respond_to do |format|
-    format.html { redirect_to "/users/#{params[:user_id]}/posts", notice: 'Post has been destroyed!' }
-    format.json { head :no_content }
+    respond_to do |format|
+      format.html { redirect_to "/users/#{params[:user_id]}/posts", notice: 'Post has been destroyed!' }
+      format.json { head :no_content }
+    end
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:author_id, :title, :text, :comments_counter, :likes_counter)
+    params.require(:post).permit(:title, :text)
   end
 end
