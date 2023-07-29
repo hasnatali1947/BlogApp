@@ -1,18 +1,22 @@
-# frozen_string_literal: true
-
 class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :read, Post, Public: true
-    can :read, Comment, Public: true
+    can :read, Post, public: true
+    can :read, Comment, public: true
 
-    return unless user.present?
+    # user can read their own posts
+    retrun unless user.present?
 
-    can :read, :all
+    can(:read, Post, user:)
+    can :destroy, Post.where(author_id: user.id)
+
+    can(:read, Comment, user:)
+    can :destroy, Comment.where(author_id: user.id)
 
     return unless user.role == 'admin'
 
-    can :manage, :all
+    can :destroy, post
+    can :destroy, Comment
   end
 end
