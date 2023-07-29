@@ -5,26 +5,26 @@ class Api::CommentsController < ActionController::Base
     @comments = Comment.where(post_id: params[:post_id])
     render json: @comments
   end
-  
-    def create
-      message = 'Invalid credentials'
-      @user = User.find_by_id(params[:user_id])
-      if @user.present?
-        @post = Post.find_by_id(params[:post_id])
-        if @post.present?
-          @comment = Comment.new(author: @user, post: @post, text: params[:text])
-          message = if @comment.save
-                      'Comment created'
-                    else
-                      'There was an error'
-                    end
-        else
-          message = 'No Post available'
-        end
+
+  def create
+    message = 'Invalid credentials'
+    @user = User.find_by_id(params[:user_id])
+    if @user.present?
+      @post = Post.find_by_id(params[:post_id])
+      if @post.present?
+        @comment = Comment.new(author: @user, post: @post, text: params[:text])
+        message = if @comment.save
+                    'Comment created'
+                  else
+                    'There was an error'
+                  end
       else
-        message = 'No User avilable'
+        message = 'No Post available'
       end
-  
-      render json: message
+    else
+      message = 'No User avilable'
     end
+
+    render json: message
   end
+end
