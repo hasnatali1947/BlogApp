@@ -28,7 +28,17 @@ class PostsController < ApplicationController
     end
   end
 
- 
+  @post = Post.find_by_id(params[:id])
+
+  @post.likes.destroy_all
+  @post.comments.destroy_all
+
+  @post.destroy
+
+  respond_to do |format|
+    format.html { redirect_to "/users/#{params[:user_id]}/posts", notice: 'Post has been destroyed!' }
+    format.json { head :no_content }
+  end
 
   private
 
