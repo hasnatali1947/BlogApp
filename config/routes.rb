@@ -10,11 +10,5 @@ Rails.application.routes.draw do
     end
   end
 
-  # API routes
-  get '/api/users/:user_id/posts', to: 'api/posts#index'
-  get '/api/comments/:post_id', to: 'api/comments#index'
-  post '/api/users/:user_id/posts/:post_id/comments', to: 'api/comments#create'
-  
-  # Add the following route for fetching comments for a specific post under API namespace
-  get '/api/posts/:post_id/comments', to: 'api/comments#index'
+
 end
